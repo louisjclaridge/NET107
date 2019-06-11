@@ -1,0 +1,159 @@
+     Assembly listing for: mariefinal.mas
+                Assembled: Sun May 20 18:30:13 BST 2018
+
+         |                                      /Division Sub-Routine
+000 5000 |               INPUT                   
+001 204E |               STORE A                 
+002 5000 |               INPUT                   
+003 204F |               STORE B                 
+004 104E |               LOAD A                  
+005 8800 |               SKIPCOND 800            
+006 9024 |               JUMP Finish             
+007 104F |               LOAD B                  
+008 8800 |               SKIPCOND 800            
+009 9024 |               JUMP Finish             
+         |                                      
+         |                                      
+         |                                      /Start the loop
+         |                                      /Minus B from A then store it in A, Then Add one to count, Count is the remandier
+00A 104E |  Loop         LOAD A                  
+00B 404F |               SUBT B                  
+00C 204E |               STORE A                 
+00D 1051 |               LOAD Count              
+00E 3054 |               ADD One                 
+00F 2051 |               STORE Count             
+         |                                      
+         |                                      
+         |                                      /See if A has gone into the minus, if it has See if it is the first loop, if not, go round the loop again
+010 104E |               LOAD A                  
+011 8800 |               SKIPCOND 800            
+012 9014 |               JUMP FirstLoop          
+013 900A |               JUMP Loop               
+         |                                      
+         |                                      
+         |                                      /See if it is the divison, rather than the prime checker
+         |                                      /Has a bool that increase to one after the divison loop
+014 1050 |  FirstLoop    LOAD Bool               
+015 8400 |               SKIPCOND 400            
+016 9037 |               JUMP DivisonCheck       
+017 1050 |               LOAD Bool               
+018 3054 |               ADD One                 
+019 2050 |               STORE Bool              
+01A 901B |               JUMP Output             
+         |                                      
+         |                                      /See if you need to remove a loop if it has gone into negative
+         |                                      /Will also Subtract one from the count
+01B 104E |  Output       LOAD A                  
+01C 8000 |               SKIPCOND 000            
+01D 9024 |               JUMP Finish             
+01E 104E |               LOAD A                  
+01F 304F |               ADD B                   
+020 204E |               STORE A                 
+021 1051 |               LOAD Count              
+022 4054 |               SUBT One                
+023 2051 |               STORE Count             
+         |                                      
+         |                                      
+         |                                      
+         |                                      /Outputs the Division Quotient and remainder
+024 1051 |  Finish       LOAD Count              
+025 6000 |               OUTPUT                  
+026 104E |               LOAD A                  
+027 6000 |               OUTPUT                  
+         |                                      
+         |                                      
+         |                                      /PrimeFinder
+         |                                      /The is the start of the Prime area
+         |                                      /It firsts resets cound
+         |                                      /Gets N and M input
+         |                                      /Subtracts one From M
+         |                                      /Overrides N onto A, M onto B
+         |                                      /Then starts the loop
+028 1055 |  PrimeFinder  LOAD Zero               
+029 2051 |               STORE Count             
+02A 5000 |               INPUT                   
+02B 2052 |               STORE N                 
+02C 1052 |               LOAD N                  
+02D 2053 |               STORE M                 
+         |                                      
+02E 1053 |               LOAD M                  
+02F 4054 |               SUBT One                
+030 2053 |               STORE M                 
+         |                                      
+031 1052 |               LOAD N                  
+032 204E |               STORE A                 
+033 1053 |               LOAD M                  
+034 204F |               STORE B                 
+035 900A |               JUMP Loop               
+         |                                      
+         |                                      
+         |                                      
+         |                                      
+036 7000 |               HALT                    
+         |                                      /Called once a divison section is complete for the prime
+         |                                      /Ouputs one if it is prime, zero if not
+037 1053 |  DivisonCheck LOAD M                  
+038 4054 |               SUBT One                
+039 8800 |               SKIPCOND 800            
+03A 9048 |               JUMP Ones               
+         |                                      /JumpOutput
+03B 104E |               LOAD A                  
+03C 8000 |               SKIPCOND 000            
+03D 904B |               JUMP Zeros              
+         |                                      /JumpOutput
+03E 1055 |               LOAD Zero               
+03F 2051 |               STORE Count             
+         |                                      
+040 1053 |               LOAD M                  
+041 4054 |               SUBT One                
+042 2053 |               STORE M                 
+043 1053 |               LOAD M                  
+044 204F |               STORE B                 
+045 1052 |               LOAD N                  
+046 204E |               STORE A                 
+047 900A |               JUMP Loop               
+         |                                      
+048 1054 |  Ones         LOAD One                
+049 6000 |               OUTPUT                  
+04A 7000 |               HALT                    
+04B 1055 |  Zeros        LOAD Zero               
+04C 6000 |               OUTPUT                  
+04D 7000 |               HALT                    
+04E 0000 |  A            DEC 0                   
+04F 0000 |  B            DEC 0                   
+050 0000 |  Bool         DEC 0                   
+051 0000 |  Count        DEC 0                   
+052 0000 |  N            DEC 0                   
+053 0000 |  M            DEC 0                   
+054 0001 |  One          DEC 1                   
+055 0000 |  Zero         DEC 0                   
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------------
+          Symbol       | Defined | References 
+         --------------+---------+-------------------------------
+          A            |   04E   | 001, 004, 00A, 00C, 010, 01B, 
+                       |         | 01E, 020, 026, 032, 03B, 046
+          B            |   04F   | 003, 007, 00B, 01F, 034, 044
+          Bool         |   050   | 014, 017, 019
+          Count        |   051   | 00D, 00F, 021, 023, 024, 029, 
+                       |         | 03F
+          DivisonCheck |   037   | 016
+          Finish       |   024   | 006, 009, 01D
+          FirstLoop    |   014   | 012
+          Loop         |   00A   | 013, 035, 047
+          M            |   053   | 02D, 02E, 030, 033, 037, 040, 
+                       |         | 042, 043
+          N            |   052   | 02B, 02C, 031, 045
+          One          |   054   | 00E, 018, 022, 02F, 038, 041, 
+                       |         | 048
+          Ones         |   048   | 03A
+          Output       |   01B   | 01A
+          PrimeFinder  |   028   | 
+          Zero         |   055   | 028, 03E, 04B
+          Zeros        |   04B   | 03D
+         --------------------------------------------------------
+
+

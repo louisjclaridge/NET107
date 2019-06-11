@@ -1,0 +1,126 @@
+/Division Sub-Routine
+Input A 
+Store A
+Input B
+Store B
+Load A
+Skipcond 800
+Jump Finish
+Load B
+Skipcond 800
+Jump Finish
+
+
+/Start the loop
+/Minus B from A then store it in A, Then Add one to count, Count is the remandier
+Loop, Load A
+Subt B
+Store A
+Load Count
+Add One
+Store Count
+
+
+/See if A has gone into the minus, if it has See if it is the first loop, if not, go round the loop again
+Load A
+SkipCond 800
+Jump FirstLoop
+Jump Loop
+
+
+/See if it is the divison, rather than the prime checker
+/Has a bool that increase to one after the divison loop
+FirstLoop, Load Bool
+Skipcond 400
+Jump DivisonCheck
+Load Bool
+Add One
+Store Bool
+Jump Output
+
+/See if you need to remove a loop if it has gone into negative
+/Will also Subtract one from the count
+Output,  Load A
+Skipcond 000
+Jump Finish
+Load A
+Add B
+Store A
+Load Count
+Subt One
+Store Count
+
+
+
+/Outputs the Division Quotient and remainder
+Finish, Load Count
+Output 
+Load A
+Output
+
+
+/PrimeFinder
+/The is the start of the Prime area
+/It firsts resets cound
+/Gets N and M input
+/Subtracts one From M
+/Overrides N onto A, M onto B
+/Then starts the loop
+PrimeFinder, Load Zero
+Store Count
+Input N
+Store N
+Load N
+Store M
+
+Load M
+Subt One
+Store M
+
+Load N
+Store A
+Load M
+Store B
+Jump Loop
+
+
+
+
+Halt
+/Called once a divison section is complete for the prime
+/Ouputs one if it is prime, zero if not
+DivisonCheck, Load M
+Subt One
+Skipcond 800
+Jump Ones 
+/JumpOutput
+ Load A
+Skipcond 000
+Jump Zeros 
+/JumpOutput
+Load Zero
+Store Count
+
+Load M
+Subt One
+Store M
+Load M
+Store B
+Load N
+Store A
+Jump Loop
+
+Ones, Load One
+Output One
+Halt
+Zeros, Load Zero
+Output Zero
+Halt
+A, Dec 0
+B, Dec 0
+Bool, Dec 0
+Count, Dec 0
+N, Dec 0
+M, DEC 0
+One, Dec 1
+Zero, Dec 0

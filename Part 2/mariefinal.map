@@ -1,0 +1,20 @@
+ -----------------------
+ Symbol       | Location
+ -------------+---------
+ A            |   04E
+ B            |   04F
+ Bool         |   050
+ Count        |   051
+ DivisonCheck |   037
+ Finish       |   024
+ FirstLoop    |   014
+ Loop         |   00A
+ M            |   053
+ N            |   052
+ One          |   054
+ Ones         |   048
+ Output       |   01B
+ PrimeFinder  |   028
+ Zero         |   055
+ Zeros        |   04B
+
