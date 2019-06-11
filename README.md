@@ -7,3 +7,6 @@ This system is a rudimentary traffic light system, this involves a client (The c
 
 ## Part 2
 This system is designed to find if a given number is prime, while simple in theory, the project had to be completed in marie which is an assembly style progamming language.
+
+#### Notice
+All projects in this repository were completed in conjunction with another team member, Jack Parsons. A link to his github can found [here](https://github.com/jackparsonsuk)
